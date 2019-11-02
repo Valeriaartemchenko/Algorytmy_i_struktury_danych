@@ -5,6 +5,31 @@
 	<title>Arrays</title>
 </head>
 <body>
+	<form action="" method="post" class="input_form">
+	  <label>
+	  	Only integers <input type="checkbox" id="integer_irrational" checked required>
+	  </label><br>
+	  <label>
+	  	Random numbers <input type="radio" name="array_type" value="random" checked>
+	  </label><br>
+	  <label>
+	    Growing numbers <input type="radio" name="array_type" value="growing">
+	  </label><br>
+	  <label>
+	  	Reducing numbers <input type="radio" name="array_type" value="reducing">
+	  </label><br>
+	  <label>
+	  	Min value<input type="number" name="min_value" id="min_value" required>
+	  </label><br>
+	  <label>
+	  	Max value<input type="number" name="max_value" id="max_value" required>
+	  </label><br>
+	  <label>
+	  	Amount <input type="number" name="array_length" id="array_length" required>
+	  </label> 	<br>
+	  <button type="button" id = "submit_btn">Generate</button>
+
+	</form>
 	<script type="text/javascript" src="arrays.js"></script>
 </body>
 </html>
