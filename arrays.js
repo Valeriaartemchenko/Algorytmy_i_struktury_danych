@@ -1,5 +1,5 @@
 'use strict';
-
+var STEP = 3; // шаг изменения числа 
 
 // получаем число рандомно
 var getRandomNumber = function (isAbsolute, min, max) {
@@ -9,7 +9,7 @@ var getRandomNumber = function (isAbsolute, min, max) {
       return Math.random() * (max - min) + min;
     }
 }
-/*
+
 //  функция для создания рандомных чисел
 var createRandomArray = function (isAbsolute, min, max, arrayLength) {
   var randomNumbers = [];
@@ -19,20 +19,29 @@ var createRandomArray = function (isAbsolute, min, max, arrayLength) {
   return randomNumbers;
 }
 // массив готовый - надо при вызове функции подать аргументы
-var randomNumbers = createRandomArray();
-console.log(randomNumbers);
-*/
+
+
+
 // функция для создания массива случайных чисел по возрастанию
 var createGrowingArray = function (isAbsolute, min, max, arrayLength) {
-  var regularNumbers = [min];
+  var growingNumbers = [min];
   var number = min;
-  for (var i = 0; i < arrayLength; i++) {
-    number += 3;
-    regularNumbers.push(number);
-    }
-  return regularNumbers;
-}
+  if (isAbsolute === true) {
+    for (var i = 0; i < arrayLength-1; i++) {
+      number += STEP;
+      growingNumbers.push(number);   
+    };
+  } else {
+    for (var i = 0; i < arrayLength-1; i++) {
+      number *= Math.random();
+      number += STEP;
+      growingNumbers.push(number); 
+    };
+  };
+  return growingNumbers;
+};
 
+/* функция создает рандомные числа по возрастанию, но работает с глюком
 var i = 0;
 var createGrowingArray = function (isAbsolute, min, max, arrayLength) {
   var regularNumbers = [min];
@@ -47,24 +56,47 @@ var createGrowingArray = function (isAbsolute, min, max, arrayLength) {
     }
   return regularNumbers;
 }
+*/
 
-var regular = createGrowingArray(true, -10,10,5);
-console.log(regular);
-
-
-
-/*
+var createReducingArray = function (isAbsolute, min, max, arrayLength) {
+  var reducingNumbers = [];
+  reducingNumbers.arrayLength = [max];
+  var number = max;
+  if (isAbsolute === true) {
+    for (var i = arrayLength; i > 0; i--) {
+      number -= STEP;
+      reducingNumbers.push(number);   
+   }
+ } else {
+   for (var i = arrayLength; i > 0; i--) {
+      number *= Math.random();
+      number -= STEP;
+      reducingNumbers.push(number);   
+   }
+ }
+  return reducingNumbers;
+};
 
 var renderArray = function (isAbsolute,min,max,arrayLength,isRandom,isGrowing){
-  if (isRandom === true) {
+  if (isRandom === true && isGrowing === false) {
     var array = createRandomArray(isAbsolute,min,max,arrayLength);
   } else if (isRandom === false && isGrowing === true) {
-
-  } else {
-
+    var array = createGrowingArray(isAbsolute, min, max, arrayLength);
+  } else if(isRandom === false && isGrowing === false) {
+    var array = createReducingArray(isAbsolute, min, max, arrayLength);
   };
   return array;
-}
+};
+
+var myArray = renderArray(true, 0,100,20,false,true);
+console.log(myArray);
+
+/*Dane wejściowe:
+wybór typu liczb: całkowite/rzeczywiste
+wybór rodzaju wektora: wszystkie/tylko losowy/tylko rosnący/tylko malejący 
+liczność zbioru
+zakres generowanych liczb: min i max lub tylko max (min =  0)
+opcja wyświetlenia wygenerowanych zbiorów
 
 */
 
