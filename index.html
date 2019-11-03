@@ -7,8 +7,18 @@
 <body>
 	<form action="" method="post" class="input_form">
 	  <label>
-	  	Only integers <input type="checkbox" id="integer_irrational" checked required>
+	  	Number of elements <input type="number" name="array_length" id="array_length" value="" required>
 	  </label><br>
+	  <label>
+	  	Range from<input type="number" name="min_value" id="min_value" value="" required>
+	  </label><br>
+	  <label>
+	  	Range to<input type="number" name="max_value" id="max_value" value="" required>
+	  </label><br>
+	  <label>
+	  	Only integers <input type="checkbox" id="integer_irrational" checked="true" required>
+	  </label><br>
+	 
 	  <label>
 	  	Random numbers <input type="radio" name="array_type" value="random" id="random_numbers" >
 	  </label><br>
@@ -18,15 +28,18 @@
 	  <label>
 	  	Reducing numbers <input type="radio" name="array_type" value="reducing" id="reducing_numbers">
 	  </label><br>
+	 
+	 <!--
 	  <label>
-	  	Min value<input type="number" name="min_value" id="min_value" value="-10" required>
+	  	Generation options
+	  	<select name="generation_options">
+	  	  <option value="random" id="random_numbers">Random</option>
+	  	  <option value="growing" id="growing_numbers">Growing</option>
+	  	  <option value="reducing" id="reducing_numbers">Reducing</option>
+	    </select>
 	  </label><br>
-	  <label>
-	  	Max value<input type="number" name="max_value" id="max_value" value="10" required>
-	  </label><br>
-	  <label>
-	  	Amount <input type="number" name="array_length" id="array_length" value="6" required>
-	  </label> 	<br>
+	  -->
+	  
 	  <button type="button" id = "submit_btn">Generate</button>
 
 	</form>
