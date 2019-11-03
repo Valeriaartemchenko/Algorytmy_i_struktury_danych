@@ -60,7 +60,7 @@ var createGrowingArray = function (isAbsolute, min, max, arrayLength) {
 
 var createReducingArray = function (isAbsolute, min, max, arrayLength) {
   var reducingNumbers = [];
-  reducingNumbers.arrayLength = [max];
+  reducingNumbers[0] = max;
   var number = max;
   if (isAbsolute === true) {
     for (var i = arrayLength; i > 0; i--) {
@@ -92,11 +92,36 @@ var myArray = renderArray(true, 0,100,20,false,true);
 console.log(myArray);
 
 /*Dane wejściowe:
-wybór typu liczb: całkowite/rzeczywiste
-wybór rodzaju wektora: wszystkie/tylko losowy/tylko rosnący/tylko malejący 
-liczność zbioru
-zakres generowanych liczb: min i max lub tylko max (min =  0)
-opcja wyświetlenia wygenerowanych zbiorów
+wybór typu liczb: całkowite/rzeczywiste ++
+wybór rodzaju wektora: wszystkie/tylko losowy/tylko rosnący/tylko malejący ++
+liczność zbioru ++
+zakres generowanych liczb: min i max lub tylko max (min =  0) ++
+opcja wyświetlenia wygenerowanych zbiorów --
 
 */
+
+//-------------------работа с событиями ввода----------------------//
+var inputForm = document.querySelector('.input_form');
+var checkBox = inputForm.querySelector('#integer_irrational').checked;
+var radioRandom = inputForm.querySelector('#random_numbers').checked;
+var radioGrowing = inputForm.querySelector('#growing_numbers').checked;
+var radioReducing = inputForm.querySelector('#reducing_numbers');
+var minimumValue = Number(inputForm.querySelector('#min_value').value);//обернуто в явное приведение к числу потому что почему-то автоматически передавало строку
+console.log(minimumValue);
+var maximimValue = Number(inputForm.querySelector('#max_value').value);
+//console.log(maximimValue);
+var numbersAmount = inputForm.querySelector('#array_length').value;
+var submitBtn = inputForm.querySelector('#submit_btn');
+
+/* собираем данные с полей и по нажатию кнопки обрабатываем*/
+
+
+submitBtn.addEventListener('click', function () {
+  var newarray = renderArray(checkBox, minimumValue,maximimValue,numbersAmount,radioRandom,radioGrowing);
+  console.log(newarray);
+});
+
+
+
+
 
