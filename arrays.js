@@ -106,8 +106,8 @@ var checkBox = inputForm.querySelector('#integer_irrational');
 var minimumValue = inputForm.querySelector('#min_value');
 var maximimValue = inputForm.querySelector('#max_value');
 var numbersAmount = inputForm.querySelector('#array_length');
-var radioRandom = inputForm.querySelector('#random_numbers');
-var radioGrowing = inputForm.querySelector('#growing_numbers');
+var radioRandom = inputForm.querySelector('#random_numbers').checked;
+var radioGrowing = inputForm.querySelector('#growing_numbers').checked;
 var radioReducing = inputForm.querySelector('#reducing_numbers');
 
 var submitBtn = inputForm.querySelector('#submit_btn');
