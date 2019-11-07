@@ -103,8 +103,8 @@ opcja wyświetlenia wygenerowanych zbiorów --
 //-------------------работа с событиями ввода----------------------//
 var inputForm = document.querySelector('.input_form');
 var checkBox = inputForm.querySelector('#integer_irrational');
-var radioRandom = inputForm.querySelector('#random_numbers').checked;
-var radioGrowing = inputForm.querySelector('#growing_numbers').checked;
+var radioRandom = inputForm.querySelector('#random_numbers');
+var radioGrowing = inputForm.querySelector('#growing_numbers');
 var radioReducing = inputForm.querySelector('#reducing_numbers');
 
 var minimumValue = inputForm.querySelector('#min_value');
@@ -114,17 +114,9 @@ var elementsAmount = inputForm.querySelector('#array_length');
 var submitBtn = inputForm.querySelector('#submit_btn');
 
 /* собираем данные с полей и по нажатию кнопки обрабатываем*/
-checkBox.addEventListener('change', function () {
-  console.log(checkBox.checked);
-});
-
-maximimValue.addEventListener('change', function () {
-  console.log(maximimValue.value);
-});
-
 
 submitBtn.addEventListener('click', function () {
-  var newarray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue.value),elementsAmount.value,radioRandom,radioGrowing);
+  var newarray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue.value),elementsAmount.value,radioRandom.checked,radioGrowing.checked);
   console.log(newarray);
 });
 
