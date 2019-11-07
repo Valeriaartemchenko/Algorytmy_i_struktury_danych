@@ -130,28 +130,12 @@ checkBox.addEventListener('change', function () {
 numbersAmount.addEventListener('change', function () {
   return numbersAmount.value;
 });
-
 minimumValue.addEventListener('change', function () {
   return minimumValue.value;
 });
-
-radioRandom.addEventListener('change', function () {
-  console.log(radioGrowing.checked);
-  console.log(radioRandom.checked);
-});
-radioGrowing.addEventListener('change', function () {
-  console.log(radioGrowing.checked);
-  console.log(radioRandom.checked);
-});
 */
 /* собираем данные с полей и по нажатию кнопки обрабатываем*/
-
 submitBtn.addEventListener('click', function () {
-  var newArray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue),numbersAmount.value,radioRandom,radioGrowing);
+  var newArray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue),numbersAmount.value,radioRandom.checked,radioGrowing);
   console.log(newArray);
 });
-
-
-
-
-
