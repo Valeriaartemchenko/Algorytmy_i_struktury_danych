@@ -102,22 +102,29 @@ opcja wyświetlenia wygenerowanych zbiorów --
 
 //-------------------работа с событиями ввода----------------------//
 var inputForm = document.querySelector('.input_form');
-var checkBox = inputForm.querySelector('#integer_irrational').checked;
+var checkBox = inputForm.querySelector('#integer_irrational');
 var radioRandom = inputForm.querySelector('#random_numbers').checked;
 var radioGrowing = inputForm.querySelector('#growing_numbers').checked;
 var radioReducing = inputForm.querySelector('#reducing_numbers');
-var minimumValue = Number(inputForm.querySelector('#min_value').value);//обернуто в явное приведение к числу потому что почему-то автоматически передавало строку
-console.log(minimumValue);
-var maximimValue = Number(inputForm.querySelector('#max_value').value);
-//console.log(maximimValue);
-var numbersAmount = inputForm.querySelector('#array_length').value;
+
+var minimumValue = inputForm.querySelector('#min_value');
+var maximimValue = inputForm.querySelector('#max_value');
+var elementsAmount = inputForm.querySelector('#array_length');
+
 var submitBtn = inputForm.querySelector('#submit_btn');
 
 /* собираем данные с полей и по нажатию кнопки обрабатываем*/
+checkBox.addEventListener('change', function () {
+  console.log(checkBox.checked);
+});
+
+maximimValue.addEventListener('change', function () {
+  console.log(maximimValue.value);
+});
 
 
 submitBtn.addEventListener('click', function () {
-  var newarray = renderArray(checkBox, minimumValue,maximimValue,numbersAmount,radioRandom,radioGrowing);
+  var newarray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue.value),elementsAmount.value,radioRandom,radioGrowing);
   console.log(newarray);
 });
 
