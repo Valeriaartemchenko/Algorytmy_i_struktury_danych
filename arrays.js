@@ -90,8 +90,6 @@ var renderArray = function (isAbsolute,min,max,arrayLength,isRandom,isGrowing){
   return array;
 };
 
-var myArray = renderArray(true, 0,100,20,false,true);
-console.log(myArray);
 
 /*Dane wejściowe:
 wybór typu liczb: całkowite/rzeczywiste ++
@@ -116,10 +114,12 @@ var elementsAmount = inputForm.querySelector('#array_length');
 var submitBtn = inputForm.querySelector('#submit_btn');
 var textArea = document.querySelector('#input_array');
 var showVectorCheckbox = inputForm.querySelector('#show_vectors');
-/* собираем данные с полей и по нажатию кнопки обрабатываем*/
+var sortBtn = inputForm.querySelector('#sort_btn');
+/* собираем данные с полей и по нажатию кнопки обрабатываем  событие*/
+var newarray = [];
 
 submitBtn.addEventListener('click', function () {
-  var newarray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue.value),elementsAmount.value,radioRandom.checked,radioGrowing.checked);
+  newarray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue.value),elementsAmount.value,radioRandom.checked,radioGrowing.checked);
   console.log(newarray);
 
   if (showVectorCheckbox.checked === true) { //если выбрана опция показывать массив сгенерированных чисел, то вставляется в тексереа
@@ -128,6 +128,29 @@ submitBtn.addEventListener('click', function () {
     textArea.innerHTML = ' '; //если нет то очищаю ставкой пустой строки
   };
 });
+
+/*-------------------------Insert Sort Algotithm------------------------*/
+
+
+var insertionSort = function(nums) {
+  for (let i = 1; i < nums.length; i++) {
+    let j = i - 1
+    let tmp = nums[i]
+    while (j >= 0 && nums[j] > tmp) {
+      nums[j + 1] = nums[j]
+      j--
+    }
+    nums[j+1] = tmp
+  }
+  return nums
+};
+
+
+sortBtn.addEventListener('click', function(){
+  var sortedArray = insertionSort(newarray);
+  console.log(sortedArray);
+});
+
 
 
 
