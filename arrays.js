@@ -32,14 +32,16 @@ var createGrowingArray = function (isAbsolute, min, max, arrayLength) {
       growingNumbers.push(number);   
     };
   } else {
-    for (var i = 0; i < arrayLength-1; i++) {
-      number *= Math.random();
-      number += STEP;
+    number *= Math.random();
+    for (var i = 0; i < arrayLength-1; i++) {  
+      number += STEP;  
       growingNumbers.push(number); 
     };
   };
   return growingNumbers;
 };
+
+;
 
 /* функция создает рандомные числа по возрастанию, но работает с глюком
 var i = 0;
@@ -68,8 +70,8 @@ var createReducingArray = function (isAbsolute, min, max, arrayLength) {
       reducingNumbers.push(number);   
    }
  } else {
+   number *= Math.random();
    for (var i = arrayLength; i > 0; i--) {
-      number *= Math.random();
       number -= STEP;
       reducingNumbers.push(number);   
    }
