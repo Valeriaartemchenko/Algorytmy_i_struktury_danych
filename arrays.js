@@ -123,14 +123,14 @@ submitBtn.addEventListener('click', function () {
   console.log(newarray);
 
   if (showVectorCheckbox.checked === true) { //если выбрана опция показывать массив сгенерированных чисел, то вставляется в тексереа
-    textArea.innerHTML = newarray;
+    textArea.innerText = newarray;
   } else {
-    textArea.innerHTML = ' '; //если нет то очищаю ставкой пустой строки
+    textArea.innerText = ' '; //если нет то очищаю ставкой пустой строки
   };
 });
 
 /*-------------------------Insert Sort Algotithm------------------------*/
-
+//var arraytest = [8,3,0,6,2,1,4,9,5,7]; для тестирование работы алгоритма в консоли
 
 var insertionSort = function(nums) {
   for (let i = 1; i < nums.length; i++) {
@@ -144,14 +144,32 @@ var insertionSort = function(nums) {
   }
   return nums
 };
-
-
+/*
 sortBtn.addEventListener('click', function(){
   var sortedArray = insertionSort(newarray);
   console.log(sortedArray);
 });
+*/
 
+/*--------------------------Bubble Sort-------------------------------*/
+let bubbleSort = function(inputArr) {
+    let len = inputArr.length;
+    for (let i = 0; i < len; i++) {
+        for (let j = 0; j < len; j++) {
+            if (inputArr[j] > inputArr[j + 1]) {
+                let tmp = inputArr[j];
+                inputArr[j] = inputArr[j + 1];
+                inputArr[j + 1] = tmp;
+            }
+        }
+    }
+    return inputArr;
+};
 
+sortBtn.addEventListener('click', function(){
+  var sortedArray = bubbleSort(newarray);
+  console.log(sortedArray);
+});
 
 
 
