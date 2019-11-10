@@ -134,15 +134,15 @@ submitBtn.addEventListener('click', function () {
 
 var insertionSort = function(nums) {
   for (let i = 1; i < nums.length; i++) {
-    let j = i - 1
-    let tmp = nums[i]
+    let j = i - 1;
+    let tmp = nums[i];
     while (j >= 0 && nums[j] > tmp) {
-      nums[j + 1] = nums[j]
-      j--
+      nums[j + 1] = nums[j];
+      j--;
     }
-    nums[j+1] = tmp
+    nums[j+1] = tmp;
   }
-  return nums
+  return nums;
 };
 /*
 sortBtn.addEventListener('click', function(){
@@ -152,7 +152,7 @@ sortBtn.addEventListener('click', function(){
 */
 
 /*--------------------------Bubble Sort-------------------------------*/
-let bubbleSort = function(inputArr) {
+var bubbleSort = function(inputArr) {
     let len = inputArr.length;
     for (let i = 0; i < len; i++) {
         for (let j = 0; j < len; j++) {
@@ -165,13 +165,44 @@ let bubbleSort = function(inputArr) {
     }
     return inputArr;
 };
-
+/*
 sortBtn.addEventListener('click', function(){
   var sortedArray = bubbleSort(newarray);
   console.log(sortedArray);
 });
+*/
+/*-------------------------Merge Sort-------------------------------*/
 
+var merge = (left, right) => {
+    let result = [],
+        leftLen = left.length,
+        rightLen = right.length,
+        l = 0,
+        r = 0;
+    while (l < leftLen && r < rightLen) {
+        if (left[l] < right[r]) {
+            result.push(left[l]);
+            l++;
+        } else {
+            result.push(right[r]);
+            r++;
+        }
+    }
+    return result.concat(left.slice(l)).concat(right.slice(r));
+};
+var mergeSort = (arr) => {
+    let len = arr.length;
+    if (len < 2) {
+        return arr;
+    }
+    let mid = Math.floor(len / 2),
+        left = arr.slice(0, mid),
+        right = arr.slice(mid);
+    return merge(mergeSort(left), mergeSort(right));
+};
 
-
-
+sortBtn.addEventListener('click', function(){
+  var sortedArray = mergeSort(newarray);
+  console.log(sortedArray);
+});
 
