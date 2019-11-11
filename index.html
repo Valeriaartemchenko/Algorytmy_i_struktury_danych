@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="utf-8">
-	<title>Arrays</title>
+  <meta charset="utf-8">
+  <title>Arrays</title>
 </head>
 <body>
-	<form action="" method="post" class="input_form">
-	  <label>
-	  	Number of elements <input type="number" name="array_length" id="array_length" value="" required>
-	  </label><br>
-	  <label>
-	  	Range from<input type="number" name="min_value" id="min_value" value="" required>
-	  </label><br>
-	  <label>
-	  	Range to<input type="number" name="max_value" id="max_value" value="" required>
-	  </label><br>
-	  <label>
-	  	Only integers <input type="checkbox" id="integer_irrational" checked="true" required>
-	  </label><br>
-	 
-	  <label>
-	  	Random numbers <input type="radio" name="array_type" value="random" id="random_numbers" checked>
-	  </label><br>
-	  <label>
-	    Growing numbers <input type="radio" name="array_type" value="growing" id="growing_numbers" >
-	  </label><br>
-	  <label>
-	  	Reducing numbers <input type="radio" name="array_type" value="reducing" id="reducing_numbers">
-	  </label><br>
-	 
-	 <!--
-	  <label>
-	  	Generation options
-	  	<select name="generation_options">
-	  	  <option value="random" id="random_numbers">Random</option>
-	  	  <option value="growing" id="growing_numbers">Growing</option>
-	  	  <option value="reducing" id="reducing_numbers">Reducing</option>
-	    </select>
-	  </label><br>
-	  -->
-	  
-	  <button type="button" id = "submit_btn">Generate</button>
+  <form action="" method="post" class="input_form" id = "usrform">
+    <label>
+      Number of elements <input type="number" name="array_length" id="array_length" value="6" required>
+    </label>  <br>
+    <label>
+      Range from<input type="number" name="min_value" id="min_value" value="-10" required>
+    </label><br>
+    <label>
+      Range to<input type="number" name="max_value" id="max_value" value="10" required>
+    </label><br>
+    <label>
+      Integers <input type="checkbox" id="integer_irrational" checked required>
+    </label><br>
+    <label>
+      Random<input type="radio" name="array_type" value="random" id="random_numbers" checked>
+    </label><br>
+    <label>
+      Growing<input type="radio" name="array_type" value="growing" id="growing_numbers" >
+    </label><br>
+    <label>
+      Reducing<input type="radio" name="array_type" value="reducing" id="reducing_numbers">
+    </label><br><br>
+    <label>
+      Show vectors <input type="checkbox" id="show_vectors" checked>
+    </label><br>
+    
+    
+    <button type="button" id = "submit_btn">Generate</button><br>
+    Input vector <br>
+    <textarea name="input_area" form="usrform" id = "input_array" cols="100"></textarea><br>
+    <button type="button" id = "sort_btn">Sort</button><br>
+    Result <br>
+    <textarea name="output_area" form="usrform" id = "output_array" cols="100"></textarea><br>
 
-	</form>
-	<script type="text/javascript" src="arrays.js"></script>
+  </form>
+  <script type="text/javascript" src="arrays.js"></script>
 </body>
 </html>
