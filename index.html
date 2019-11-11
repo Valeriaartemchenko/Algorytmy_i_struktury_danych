@@ -7,13 +7,13 @@
 <body>
   <form action="" method="post" class="input_form" id = "usrform">
     <label>
-      Number of elements <input type="number" name="array_length" id="array_length" value="6" required>
+      Number of elements <input type="number" name="array_length" id="array_length" value="10" required>
     </label>  <br>
     <label>
-      Range from<input type="number" name="min_value" id="min_value" value="-10" required>
+      Range from<input type="number" name="min_value" id="min_value" value="-50" required>
     </label><br>
     <label>
-      Range to<input type="number" name="max_value" id="max_value" value="10" required>
+      Range to<input type="number" name="max_value" id="max_value" value="50" required>
     </label><br>
     <label>
       Integers <input type="checkbox" id="integer_irrational" checked required>
@@ -26,7 +26,15 @@
     </label><br>
     <label>
       Reducing<input type="radio" name="array_type" value="reducing" id="reducing_numbers">
-    </label><br><br>
+    </label><br>
+    <select name="sorting_algorithm" id ="sort_options" form="usrform">
+      <option value="insertion_sort">Insertion Sort</option>
+      <option value="bubble_sort">Bubble Sort</option>
+      <option value="merge_sort">Merge Sort</option>
+      <option value="heap_sort">Heap Sort</option>
+      <option value="quick_sort">Quick Sort</option>
+    </select>
+    <br><br>
     <label>
       Show vectors <input type="checkbox" id="show_vectors" checked>
     </label><br>
