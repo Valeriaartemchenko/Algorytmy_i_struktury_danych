@@ -169,6 +169,44 @@ var bubbleSort = function(inputArr) {
 sortBtn.addEventListener('click', function(){
   var sortedArray = bubbleSort(newarray);
   console.log(sortedArray);
+=======
+var minimumValue = inputForm.querySelector('#min_value');
+var maximimValue = inputForm.querySelector('#max_value');
+var numbersAmount = inputForm.querySelector('#array_length');
+var radioRandom = inputForm.querySelector('#random_numbers').checked;
+var radioGrowing = inputForm.querySelector('#growing_numbers').checked;
+var radioReducing = inputForm.querySelector('#reducing_numbers');
+
+var submitBtn = inputForm.querySelector('#submit_btn');
+
+// функция для изменения состояния чекбокса
+var onCheckboxChange = function(element) {
+  if(element.checked == true) {
+    element.removeAttribute('checked'); 
+  } else if (element.checked == false) {
+    element.setAttribute("checked", 'true');
+  };
+};
+// ивент листенер на состояние изменения чекбокса (может быть и click вместо change)
+checkBox.addEventListener('change', function () {
+  onCheckboxChange(checkBox);
+  console.log(checkBox.checked);
+});
+
+/*
+numbersAmount.addEventListener('change', function () {
+  return numbersAmount.value;
+});
+
+minimumValue.addEventListener('change', function () {
+  return minimumValue.value;
+});
+*/
+/* собираем данные с полей и по нажатию кнопки обрабатываем*/
+
+submitBtn.addEventListener('click', function () {
+  var newArray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue),numbersAmount.value,radioRandom,radioGrowing);
+  console.log(newArray);
 });
 */
 /*-------------------------Merge Sort-------------------------------*/
