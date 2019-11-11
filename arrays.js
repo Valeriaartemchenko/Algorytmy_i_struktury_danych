@@ -18,9 +18,6 @@ var createRandomArray = function (isAbsolute, min, max, arrayLength) {
   }
   return randomNumbers;
 }
-// массив готовый - надо при вызове функции подать аргументы
-
-
 
 // функция для создания массива случайных чисел по возрастанию
 var createGrowingArray = function (isAbsolute, min, max, arrayLength) {
@@ -40,7 +37,6 @@ var createGrowingArray = function (isAbsolute, min, max, arrayLength) {
   };
   return growingNumbers;
 };
-
 
 var createReducingArray = function (isAbsolute, min, max, arrayLength) {
   var reducingNumbers = [];
@@ -72,7 +68,6 @@ var renderArray = function (isAbsolute,min,max,arrayLength,isRandom,isGrowing){
   return array;
 };
 
-
 //-------------------работа с событиями ввода----------------------//
 var inputForm = document.querySelector('.input_form');
 var checkBox = inputForm.querySelector('#integer_irrational');
@@ -89,12 +84,12 @@ var textArea = document.querySelector('#input_array');
 var showVectorCheckbox = inputForm.querySelector('#show_vectors');
 var sortBtn = inputForm.querySelector('#sort_btn');
 var resultArea = document.querySelector('#output_array');
+var selectSort = document.querySelector('#sort_options');
 /* собираем данные с полей и по нажатию кнопки обрабатываем  событие*/
-var newarray = [];
 
+var newarray = [];
 submitBtn.addEventListener('click', function () {
   newarray = renderArray(checkBox.checked, Number(minimumValue.value),Number(maximimValue.value),elementsAmount.value,radioRandom.checked,radioGrowing.checked);
-  //console.log(newarray);
 
   if (showVectorCheckbox.checked === true) { //если выбрана опция показывать массив сгенерированных чисел, то вставляется в тексереа
     textArea.innerText = newarray;
@@ -104,7 +99,6 @@ submitBtn.addEventListener('click', function () {
 });
 
 /*-------------------------Insert Sort Algotithm------------------------*/
-//var arraytest = [8,3,0,6,2,1,4,9,5,7]; для тестирование работы алгоритма в консоли
 
 var insertionSort = function(nums) {
   for (let i = 1; i < nums.length; i++) {
@@ -118,14 +112,9 @@ var insertionSort = function(nums) {
   }
   return nums;
 };
-/*
-sortBtn.addEventListener('click', function(){
-  var sortedArray = insertionSort(newarray);
-  console.log(sortedArray);
-});
-*/
 
 /*--------------------------Bubble Sort-------------------------------*/
+
 var bubbleSort = function(inputArr) {
     let len = inputArr.length;
     for (let i = 0; i < len; i++) {
@@ -139,15 +128,10 @@ var bubbleSort = function(inputArr) {
     }
     return inputArr;
 };
-/*
-sortBtn.addEventListener('click', function(){
-  var sortedArray = bubbleSort(newarray);
-  console.log(sortedArray);
-});
-*/
+
 /*-------------------------Merge Sort-------------------------------*/
 
-var merge = (left, right) => {
+var merge = function(left, right){
     let result = [],
         leftLen = left.length,
         rightLen = right.length,
@@ -164,7 +148,7 @@ var merge = (left, right) => {
     }
     return result.concat(left.slice(l)).concat(right.slice(r));
 };
-var mergeSort = (arr) => {
+var mergeSort = function(arr) {
     let len = arr.length;
     if (len < 2) {
         return arr;
@@ -174,22 +158,17 @@ var mergeSort = (arr) => {
         right = arr.slice(mid);
     return merge(mergeSort(left), mergeSort(right));
 };
-/*
-sortBtn.addEventListener('click', function(){
-  var sortedArray = mergeSort(newarray);
-  console.log(sortedArray);
-});
-*/
+
 /*--------------------------------Heap Sort ---------------------------*/
-function swap(array, firstItemIndex, lastItemInde) {
+var  swap = function(array, firstItemIndex, lastItemInde) {
   var tmp = array[firstItemIndex];
   
   // Swap first and last items in the array.
   array[firstItemIndex] = array[lastItemInde];
   array[lastItemInde] = tmp;
-}
+};
 
-function heapify(heap, i, max) {
+var heapify = function(heap, i, max) {
   var index, leftChild, righChild;
   
   while(i < max) {
@@ -213,10 +192,10 @@ function heapify(heap, i, max) {
     swap(heap,i, index);
     
     i = index;
-  }
-}
+  };
+};
 
-function buildMaxHeap(array) {
+var buildMaxHeap = function(array) {
   var i;
   i = array.length / 2 - 1;
   i = Math.floor(i);
@@ -226,11 +205,10 @@ function buildMaxHeap(array) {
   while (i >= 0) {
     heapify(array, i, array.length);
     i -= 1;
-  }
-}
+  };
+};
 
-
-function heapSort(array) {
+var heapSort = function(array) {
   // Build our max heap.
   buildMaxHeap(array);
 
@@ -245,76 +223,75 @@ function heapSort(array) {
     heapify(array, 0, lastElement);
 
     lastElement -= 1
-  }
+  };
   return array;
-}
+};
 
-/*
-sortBtn.addEventListener('click', function(){
-  var sortedArray = heapSort(newarray);
-  console.log(sortedArray);
-});
-*/
 /*------------------------------Quick Sort -----------------------------*/
-function swap(items, firstIndex, secondIndex){
+var swap = function(items, firstIndex, secondIndex){
     var temp = items[firstIndex];
     items[firstIndex] = items[secondIndex];
     items[secondIndex] = temp;
 }
 
-function partition(items, left, right) {
-
-    var pivot   = items[Math.floor((right + left) / 2)],
-        i       = left,
-        j       = right;
-
-
+var partition = function(items, left, right) {
+  var pivot   = items[Math.floor((right + left) / 2)],
+    i = left,
+    j = right;
     while (i <= j) {
+      while (items[i] < pivot) {
+        i++;
+      };
+      while (items[j] > pivot) {
+        j--;
+      };
+      if (i <= j) {
+        swap(items, i, j);
+        i++;
+        j--;
+      };
+    };
+  return i;
+};
 
-        while (items[i] < pivot) {
-            i++;
-        }
-
-        while (items[j] > pivot) {
-            j--;
-        }
-
-        if (i <= j) {
-            swap(items, i, j);
-            i++;
-            j--;
-        }
-    }
-
-    return i;
-}
-
-function quickSort(items, left, right) {
-
-    var index;
-
+var quickSort = function(items, left, right) {
+  var index;
     if (items.length > 1) {
-
-        left = typeof left != "number" ? 0 : left;
-        right = typeof right != "number" ? items.length - 1 : right;
-
-        index = partition(items, left, right);
-
+      left = typeof left != "number" ? 0 : left;
+      right = typeof right != "number" ? items.length - 1 : right;
+      index = partition(items, left, right);
         if (left < index - 1) {
-            quickSort(items, left, index - 1);
-        }
-
+          quickSort(items, left, index - 1);
+        };
         if (index < right) {
-            quickSort(items, index, right);
-        }
+          quickSort(items, index, right);
+        };
+    };
+  return items;
+};
 
-    }
-
-    return items;
-}
-
+//---------------------------Обработка события нажития кнопки сортировки-------------------------//
 sortBtn.addEventListener('click', function(){
-  var sortedArray = quickSort(newarray);
+  //console.log(selectSort.value);
+  if (selectSort.value === 'insertion_sort') {
+    var sortedArray = insertionSort(newarray);
+  };
+
+  if (selectSort.value === 'bubble_sort') {
+    var sortedArray = bubbleSort(newarray);
+  };
+
+  if (selectSort.value === 'merge_sort') {
+    var sortedArray = mergeSort(newarray);
+  };
+
+  if (selectSort.value === 'heap_sort') {
+    var sortedArray = heapSort(newarray);
+  };
+
+  if (selectSort.value === 'quick_sort') {
+    var sortedArray = quickSort(newarray);
+  }
   resultArea.innerText = sortedArray;
-  console.log(sortedArray);
+  //console.log(sortedArray);
 });
