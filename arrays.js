@@ -1,5 +1,6 @@
-//'use strict';
+'use strict';
 var STEP = 3; // шаг изменения числа 
+var TO_NANO_SECONDS = 1000000;
 
 // получаем число рандомно
 var getRandomNumber = function (isAbsolute, min, max) {
@@ -85,6 +86,7 @@ var showVectorCheckbox = inputForm.querySelector('#show_vectors');
 var sortBtn = inputForm.querySelector('#sort_btn');
 var resultArea = document.querySelector('#output_array');
 var selectSort = document.querySelector('#sort_options');
+var executionTime = document.querySelector('#time');
 /* собираем данные с полей и по нажатию кнопки обрабатываем  событие*/
 
 var newarray = [];
@@ -270,28 +272,42 @@ var quickSort = function(items, left, right) {
   return items;
 };
 
-//---------------------------Обработка события нажития кнопки сортировки-------------------------//
-sortBtn.addEventListener('click', function(){
-  //console.log(selectSort.value);
+/*---------------------------сборная функция сортировки-----------------------------*/
+var sortArray = function (array) {
   if (selectSort.value === 'insertion_sort') {
-    var sortedArray = insertionSort(newarray);
+    var sortedArray = insertionSort(array);
   };
 
   if (selectSort.value === 'bubble_sort') {
-    var sortedArray = bubbleSort(newarray);
+    var sortedArray = bubbleSort(array);
   };
 
   if (selectSort.value === 'merge_sort') {
-    var sortedArray = mergeSort(newarray);
+    var sortedArray = mergeSort(array);
   };
 
   if (selectSort.value === 'heap_sort') {
-    var sortedArray = heapSort(newarray);
+    var sortedArray = heapSort(array);
   };
 
   if (selectSort.value === 'quick_sort') {
-    var sortedArray = quickSort(newarray);
+    var sortedArray = quickSort(array);
   }
+  return sortedArray;
+};
+
+
+//---------------------------Обработка события нажития кнопки сортировки-------------------------//
+sortBtn.addEventListener('click', function(){
+  //const start= new Date().getTime();
+  const start=window.performance.now() * TO_NANO_SECONDS;
+  var sortedArray = sortArray(newarray);
+  //const end = new Date().getTime();
+  const end = window.performance.now() * TO_NANO_SECONDS;
+  var time = Math.floor(end - start) + ' nanoseconds';
+  executionTime.innerText = time;
   resultArea.innerText = sortedArray;
   //console.log(sortedArray);
 });
+
+
