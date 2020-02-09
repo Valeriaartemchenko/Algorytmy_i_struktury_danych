@@ -1,3 +1,4 @@
+//Проект 2 часть LinkedList, ArrayList and Vector comparing
 import java.io.*;
 import java.util.*;
 
