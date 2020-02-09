@@ -215,7 +215,7 @@ var heapSort = function(array) {
   buildMaxHeap(array);
 
   // Find last element.
-  lastElement = array.length - 1;
+  var lastElement = array.length - 1;
 
   // Continue heap sorting until we have
   // just one element left in the array.
